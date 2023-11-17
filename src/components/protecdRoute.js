@@ -7,15 +7,21 @@ import { SetUser } from "../redux/usersSlice";
 import { Hideloading, ShowLoading } from "../redux/loadersSlice";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Switch from '@mui/material/Switch';
 
 function ProtecdRoute({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // const { loading } = useSelector((state) => state.loaders);
+  const [checked, setChecked] = React.useState(true);
 
   const { user } = useSelector((state) => state.users);
   // const [user, setUser] = useState(null);
+
+  const handleChange1 = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const getCurrentUser = async () => {
     try {
@@ -73,6 +79,13 @@ function ProtecdRoute({ children }) {
           </div>
         </div>
         <div className="content m-1 p-1">{children}</div>
+        <div>
+        <Switch
+      checked={checked}
+      onChange={handleChange}
+      inputProps={{ 'aria-label': 'controlled' }}
+    />
+        </div>
       </div>
     )
   );
