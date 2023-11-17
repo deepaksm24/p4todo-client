@@ -79,7 +79,7 @@ function ProtecdRoute({ children }) {
           </div>
         </div>
         <div className="content m-1 p-1">{children}</div>
-        <div>
+        <div className="theme">
         <Switch
       checked={checked}
       onChange={handleChange1}
