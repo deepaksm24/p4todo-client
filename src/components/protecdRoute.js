@@ -82,7 +82,7 @@ function ProtecdRoute({ children }) {
         <div>
         <Switch
       checked={checked}
-      onChange={handleChange}
+      onChange={handleChange1}
       inputProps={{ 'aria-label': 'controlled' }}
     />
         </div>
