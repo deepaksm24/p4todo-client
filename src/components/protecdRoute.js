@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { GetCurrentuser } from "../api/users";
 // import { message } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -8,19 +8,21 @@ import { Hideloading, ShowLoading } from "../redux/loadersSlice";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Switch from '@mui/material/Switch';
+import ReactDOM from 'react-dom';
+
 
 function ProtecdRoute({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // const { loading } = useSelector((state) => state.loaders);
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const { user } = useSelector((state) => state.users);
-  // const [user, setUser] = useState(null);
 
   const handleChange1 = (event) => {
     setChecked(event.target.checked);
+    
   };
 
   const getCurrentUser = async () => {
@@ -48,6 +50,9 @@ function ProtecdRoute({ children }) {
       return error.message;
     }
   };
+
+
+ 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getCurrentUser();
@@ -78,13 +83,15 @@ function ProtecdRoute({ children }) {
             />
           </div>
         </div>
-        <div className="content m-1 p-1">{children}</div>
-        <div className="theme">
-        <Switch
+        <div className={checked ?"contentbg bg-dark text-white" :"content m-1 p-1"}>
+          {children}
+        <div className="d-flex justify-content-end">
+        <p className="mt-1">{checked ?"Light" :"HighLight"}</p><Switch
       checked={checked}
       onChange={handleChange1}
       inputProps={{ 'aria-label': 'controlled' }}
     />
+        </div>
         </div>
       </div>
     )

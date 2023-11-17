@@ -36,8 +36,7 @@
     transform: rotate(360deg);
   }
 }
-.theme{
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
+.contentbg{
+  background-color: #61dafb;
+  
 }

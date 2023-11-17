@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import moment from "moment";
 import { Table, message, Popconfirm } from "antd";
 import { useDispatch } from "react-redux";
@@ -13,13 +13,21 @@ import PendingIcon from "@mui/icons-material/Pending";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { Tooltip } from "antd";
 import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField'
+
 
 function AddTask() {
   const [task, setTask] = React.useState([]);
   const [showtask, setShowtask] = React.useState(false);
   const [selectedtask, setSelectedtask] = React.useState(null);
   const [formtype, setFormtype] = React.useState("add");
+  const [value, setValue] = useState('');
 
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    console.log(value);
+  };
   const disptach = useDispatch();
 
   const getData = async () => {
@@ -205,7 +213,15 @@ function AddTask() {
 
   return (
     <div>
+  
       <div className="d-flex justify-content-end p-3">
+     
+      {/* <TextField 
+      className="ml-5"
+      id="outlined-basic" label="Search" variant="outlined"
+      onChange={handleChange}
+      /> */}
+    
         <button
           type="button"
           className="btn btn-outline-secondary"
